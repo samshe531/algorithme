@@ -1,0 +1,30 @@
+PROCEDURE dot_product(v1, v2)
+VAR
+    n: INTEGER; // longueur des vecteurs
+    ps: FLOAT;
+BEGIN
+    n := length(v1); // Assumer que v1 et v2 ont la même longueur
+    ps := 0;
+    FOR i := 0 TO n-1 DO
+        ps := ps + (v1[i] * v2[i]);
+    END_FOR
+    RETURN ps;
+END
+
+PROCEDURE check_orthogonal_vectors(vectors)
+VAR
+    n, i, j: INTEGER;
+    ps: FLOAT;
+BEGIN
+    n := length(vectors);
+    FOR i := 0 TO n-1 DO
+        FOR j := i+1 TO n-1 DO
+            ps := dot_product(vectors[i], vectors[j]);
+            IF ps = 0 THEN
+                output "Les vecteurs", vectors[i], "et", vectors[j], "sont orthogonaux."
+            ELSE
+                output "Les vecteurs", vectors[i], "et", vectors[j], "ne sont pas orthogonaux."
+            END_IF
+        END_FOR
+    END_FOR
+END
